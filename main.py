@@ -7,7 +7,7 @@ PATH = "C:\\Users\\ccaedsi\\Selenium\\chromedriver.exe"
 service = Service(PATH)
 driver = webdriver.Chrome(service=service)
 
-driver.get("https://davd-siddle-portfolio.netlify.app/")
+driver.get("https://www.techwithtim.net/")
 
 time.sleep(10) # wait for 10 seconds before closing the browser
 print(driver.title)
