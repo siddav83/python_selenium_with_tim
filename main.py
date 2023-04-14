@@ -9,27 +9,25 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 PATH = "C:\\Users\\ccaedsi\\Selenium\\chromedriver.exe"
 service = Service(PATH)
-driver: WebDriver = webdriver.Chrome(service=service)
-
+# driver: WebDriver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(PATH)
 driver.get("https://www.techwithtim.net/")
 
-# wait for 10 seconds before closing the browser
-print(driver.title)
+link = driver.find_element(By.LINK_TEXT, "Game Development With Python")
+link.click()
 
-search = driver.find_element("name", "s")
-search.send_keys("test")
-search.send_keys(Keys.RETURN)
-
-# main = driver.find_element("id", "main")
 try:
-    main = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.ID, "main"))
+    link = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.LINK_TEXT, "General Pygame Tutorial"))
     )
-    articles = driver.find_elements(By.TAG_NAME, "article")
-    for article in articles:
-        header = article.find_element(By.CLASS_NAME, "entry-summary")
-        print(header.text)
+    link.click()
+
+    link = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "sow-button-19310003"))
+    )
+    link.click()
+    driver.back()
+    driver.back()
+    driver.back()
 except:
     driver.quit()
-
-driver.quit()  # close the browser
